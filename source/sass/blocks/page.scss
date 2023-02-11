@@ -1,0 +1,13 @@
+.page__body {
+  font-family: $montserrat;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  min-height: 100vh;
+  line-height: 20px;
+  min-width: 320px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  overflow-x: hidden;
+}
