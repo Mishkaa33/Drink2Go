@@ -1,0 +1,119 @@
+.swiper-slide__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: $tablet-width) {
+    display: grid;
+    justify-items: center;
+  }
+
+  @media (min-width: $desktop-width) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.swiper-slide__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: $tablet-width) {
+    grid-row: 1;
+    padding: 0;
+  }
+
+  @media (min-width: $desktop-width) {
+    grid-column: 2;
+    padding: 0;
+  }
+}
+
+.swiper-slide__image {
+  margin-bottom: 11px;
+
+  @media (min-width: $tablet-width) {
+    width: 476px;
+    height: 476px;
+  }
+
+  @media (min-width: $desktop-width) {
+    width: 600px;
+    height: 600px;
+  }
+}
+
+.swiper-slide__new {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $slate-blue;
+  margin-bottom: 4px;
+}
+
+.swiper-slide__title {
+  margin: 0;
+  font-size: 36px;
+  line-height: 48px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+
+  @media (min-width: $tablet-width) {
+    font-size: 56px;
+    line-height: 80px;
+    margin-bottom: 16px;
+  }
+}
+
+.swiper-slide__descrirtion {
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 20px;
+
+  @media (min-width: $tablet-width) {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 32px;
+    text-align: center;
+    max-width: 608px;
+  }
+}
+
+.swiper-slide__order {
+  display: flex;
+  align-items: center;
+
+  @media (min-width: $tablet-width) {
+    margin-bottom: 19px;
+  }
+}
+
+.swiper-slide__order-old {
+  font-size: 16px;
+  line-height: 32px;
+  text-decoration-line: line-through;
+  color: $slate-blue;
+  margin-right: 6px;
+}
+
+.swiper-slide__order-new {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 32px;
+  color: $night-rider;
+  margin-right: 20px;
+}
+
+.swiper-slide__order-button {
+  padding: 8px 20px;
+  font-size: 16px;
+  line-height: 24px;
+}

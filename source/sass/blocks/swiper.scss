@@ -1,0 +1,19 @@
+.swiper__bitton-wrapper .swiper-button-next:after,
+.swiper__bitton-wrapper .swiper-button-prev:after {
+  color: $slate-blue;
+  font-size: 20px;
+}
+
+.swiper__bitton-wrapper .swiper-button-prev {
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 100%;
+}
+
+.swiper__bitton-wrapper .swiper-button-next {
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 100%;
+}
