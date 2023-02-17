@@ -19,6 +19,10 @@ import { htmlValidator } from 'gulp-w3c-html-validator';
 const sass = gulpSass(dartSass);
 let isDevelopment = true;
 
+gulp.task("deploy", function () {
+  return gulp.src("./dist/**/*").pipe(ghPages());
+});
+
 export function processMarkup() {
   return gulp.src('source/*.html').pipe(gulp.dest('build'));
 }
@@ -48,7 +52,7 @@ export function processScripts() {
   return gulp
     .src('source/js/**/*.js')
     .pipe(terser())
-    .pipe(gulp.dest('build/js'))
+    .pipe(gulp.dest('build/js', { sourcemaps: isDevelopment }))
     .pipe(browser.stream());
 }
 
@@ -120,7 +124,7 @@ function reloadServer(done) {
 
 function watchFiles() {
   gulp.watch('source/sass/**/*.scss', gulp.series(processStyles));
-  gulp.watch('source/js/script.js', gulp.series(processScripts));
+  gulp.watch('source/js/*.js', gulp.series(processScripts));
   gulp.watch('source/*.html', gulp.series(processMarkup, reloadServer));
 }
 

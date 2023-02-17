@@ -4,6 +4,7 @@
 @import 'global/fonts';
 @import 'global/reboot';
 @import 'global/container';
+@import 'global/utils';
 
 /* BLOCKS */
 @import 'blocks/header';
@@ -13,3 +14,9 @@
 @import 'blocks/swiper';
 @import 'blocks/swiper-slide';
 @import 'blocks/button';
+@import 'blocks/catalog';
+@import 'blocks/form';
+@import 'blocks/form-slider';
+@import 'blocks/catalog-card';
+@import 'blocks/map';
+@import 'blocks/footer';
