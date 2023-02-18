@@ -1,8 +1,7 @@
 .form__fieldset {
-  margin: 0;
   padding: 0;
   border: none;
-  margin-bottom: 24px;
+  margin: 0 0 24px 0;
 
   &--price {
     @media (min-width: $tablet-width) {
@@ -15,7 +14,7 @@
   }
 
   &--country {
-    margin-bottom: 34px;
+    margin: 0 0 34px 0;
   }
 
   @media (min-width: $tablet-width) {
@@ -23,7 +22,7 @@
   }
 
   @media (min-width: $desktop-width) {
-    margin: 0 0 31px;
+    margin: 0 0 30px;
   }
 }
 
@@ -31,8 +30,8 @@
   @media (min-width: $tablet-width) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 0 14px;
-    margin: 0 0 42px 0;
+    gap: 0 15px;
+    margin: 0 0 39px 0;
   }
 
   @media (min-width: $desktop-width) {
@@ -43,23 +42,24 @@
 }
 
 .form__fieldset-legends {
+  padding: 0;
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
   color: $night-rider;
-  margin-bottom: 32px;
+  margin: 0 0 32px 0;
   letter-spacing: 0.01em;
 
   @media (min-width: $tablet-width) {
-    margin-bottom: 30px;
+    margin: 0 0 30px 0;
   }
 
   &--milk {
-    margin-bottom: 22px;
+    margin: 0 0 22px 0;
   }
 
   &--country {
-    margin-bottom: 19px;
+    margin: 0 0 22px 0;
   }
 }
 
@@ -89,6 +89,7 @@
   border-radius: 4px;
   padding: 6px 10px;
   border: 2px solid $medium-purple;
+  font-family: $montserrat;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -152,7 +153,7 @@
 
 .form__radio-input + .form__input-mark::before {
   position: absolute;
-  content: '';
+  content: "";
   width: 16px;
   height: 16px;
   background-color: transparent;
@@ -161,23 +162,46 @@
   left: 2px;
 }
 
-.form__radio-input:checked {
+.form__radio-input[type="radio"]:checked {
   + .form__input-mark {
     border: 2px solid $slate-blue;
+
     &::before {
       background-color: $slate-blue;
     }
   }
 }
 
-.form__radio-input {
-  &:hover,
-  &:focus-visible {
-    ~ .form__input-mark {
-      border-color: $medium-purple;
-      &::before {
-        background-color: $quartz;
-      }
+.form__radio-input[type="radio"]:hover + .form__input-mark {
+  border-color: $medium-purple;
+
+  &::before {
+    background-color: $quartz;
+  }
+}
+
+.form__radio-input[type="radio"]:focus + .form__input-mark {
+  border-color: $medium-purple;
+
+  &::before {
+    background-color: $quartz;
+  }
+}
+
+.form__radio-input:disabled {
+  ~ .form__fieldset-mark {
+    color: $silver;
+  }
+}
+
+.form__radio-input:disabled ~ .form__input-mark {
+  border-color: $gainsboro;
+}
+
+.form__radio-input:hover:disabled {
+  ~ .form__input-mark {
+    &::before {
+      background-color: transparent;
     }
   }
 }
@@ -187,18 +211,14 @@
   padding: 0;
   list-style-type: none;
   display: grid;
-  gap: 22px 0;
-
-  @media (min-width: $tablet-width) {
-    gap: 21px 0;
-  }
+  gap: 21px 0;
 }
 
 .form__checkbox-mark {
   cursor: pointer;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -2px;
     left: 2px;
@@ -207,10 +227,15 @@
     border-radius: 12px;
     background: #bdbdbd;
     transition: left 0.2s ease-in-out, background 0.2s ease;
+
+    @media (min-width: $desktop-width) {
+      top: -5px;
+      left: 0;
+    }
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 5px;
@@ -219,13 +244,18 @@
     border-radius: 50%;
     background: $color-default-white;
     transition: left 0.2s ease-in-out, background 0.2s ease;
+
+    @media (min-width: $desktop-width) {
+      top: -3px;
+      left: 2px;
+    }
   }
 }
 
 .form__checkbox-input:checked {
   ~ .form__checkbox-mark {
     &::after {
-      left: 22px;
+      left: 20px;
     }
 
     &::before {
@@ -242,6 +272,41 @@
   }
 }
 
+.form__checkbox-input[type="checkbox"]:focus {
+  ~ .form__checkbox-mark::before {
+    border: 2px solid $medium-purple;
+    background-color: $quartz;
+  }
+}
+
+.form__checkbox-input:disabled {
+  ~ .form__fieldset-mark {
+    color: $silver;
+  }
+}
+
+.form__checkbox-input:disabled ~ .form__checkbox-mark::before {
+  background-color: $gainsboro;
+}
+
+.form__checkbox-input:hover:disabled {
+  ~ .form__checkbox-mark {
+    &::before {
+      border-color: $gainsboro;
+    }
+  }
+}
+
+.form__checkbox-input:checked:disabled ~ .form__checkbox-mark {
+  &::before {
+    background-color: $gainsboro;
+  }
+
+  &::after {
+    background-color: $silver;
+  }
+}
+
 .form__button-group {
   display: flex;
   flex-direction: column;
@@ -253,14 +318,13 @@
     flex-direction: row;
     justify-content: center;
     margin: 0 54px 44px 0;
-    gap: 0 30px;
+    gap: 0 19px;
   }
 
   @media (min-width: $desktop-width) {
     margin: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0 19px;
   }
 }
 
@@ -296,6 +360,12 @@
   border: 0;
   border-radius: 4px;
   transition: 0.3s;
+
+  &--disabled {
+    color: $color-default-white;
+    background-color: $gainsboro;
+    pointer-events: none;
+  }
 
   @media (min-width: $tablet-width) {
     width: 21.9%;

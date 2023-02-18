@@ -1,5 +1,6 @@
 .header__wrapper {
   display: flex;
+  flex-wrap: wrap;
   position: relative;
   align-items: center;
   justify-content: space-between;
@@ -23,18 +24,19 @@
   @media (min-width: $tablet-width) {
     min-width: 82px;
     min-height: 36px;
-    margin-right: 66px;
+    margin: 0 66px 0 0;
   }
 
   @media (min-width: $desktop-width) {
     min-width: 170px;
     min-height: 36px;
-    margin-right: 20px;
+    margin: 0 20px 0 0;
   }
 }
 
 .header__title {
   display: none;
+
   @media (min-width: $desktop-width) {
     display: block;
     margin: 0;
@@ -65,7 +67,9 @@
 
   @media (min-width: $tablet-width) {
     display: flex;
+    flex-wrap: wrap;
   }
+
   @media (min-width: $desktop-width) {
     gap: 0 20px;
   }
@@ -91,18 +95,20 @@
     margin: 0;
   }
 
+  &:active {
+    background-color: $magnolia;
+  }
+
   @media (min-width: $tablet-width) {
     margin: 0;
     border: none;
     letter-spacing: 0.02em;
     padding: 32px 20px;
-  }
 
-  &:hover {
-    background-color: $magnolia;
-  }
+    &:hover {
+      color: $slate-blue;
+    }
 
-  @media (min-width: $tablet-width) {
     &--current {
       &::after {
         position: absolute;
@@ -120,7 +126,6 @@
 .header__nav {
   display: none;
   width: 100%;
-  margin-top: 13px;
 
   .no-js & {
     display: block;
@@ -129,6 +134,7 @@
   .is-open & {
     display: block;
     position: absolute;
+    margin: 13px 0 0 0;
     background-color: $color-default-white;
     top: 46px;
     z-index: 99;
@@ -151,9 +157,14 @@
   }
 
   @media (min-width: $desktop-width) {
-    width: 453px;
+    width: 458px;
     display: block;
     margin: 0 auto;
+
+    .is-open & {
+      width: 458px;
+      margin: 0 auto;
+    }
   }
 }
 
@@ -226,28 +237,37 @@
 
 .header__menu-wrapper {
   display: flex;
-  order: 1;
 
   @media (min-width: $tablet-width) {
-    gap: 0 17px;
+    order: 1;
     margin: 0 0 0 auto;
   }
 
   @media (min-width: $desktop-width) {
     gap: 0 17px;
+    margin: 0;
   }
 }
 
 .header__icon-link {
   display: flex;
   padding: 22px;
+  color: $night-rider;
 
   &:hover {
+    color: $slate-blue;
+
+    .header__icon-text {
+      color: $slate-blue;
+    }
+  }
+
+  &:active {
     background-color: $magnolia;
   }
 
   @media (min-width: $tablet-width) {
-    padding: 30px 22px;
+    padding: 32px 22px;
   }
 
   @media (min-width: $desktop-width) {
@@ -268,5 +288,9 @@
     font-size: 12px;
     line-height: 16px;
     color: $night-rider;
+  }
+
+  @media (max-width: 1117px) {
+    display: none;
   }
 }

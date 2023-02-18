@@ -10,6 +10,11 @@
   border: none;
   cursor: pointer;
 
+  &--disabled {
+    background-color: $silver;
+    pointer-events: none;
+  }
+
   &:hover,
   :focus {
     background-color: $medium-purple;

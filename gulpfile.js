@@ -1,114 +1,110 @@
-import gulp from 'gulp';
-import plumber from 'gulp-plumber';
-import gulpIf from 'gulp-if';
-import dartSass from 'sass';
-import gulpSass from 'gulp-sass';
-import postcss from 'gulp-postcss';
-import postUrl from 'postcss-url';
-import autoprefixer from 'autoprefixer';
-import csso from 'postcss-csso';
-import terser from 'gulp-terser';
-import squoosh from 'gulp-libsquoosh';
-import svgo from 'gulp-svgmin';
-import { stacksvg } from 'gulp-stacksvg';
-import { deleteAsync } from 'del';
-import browser from 'browser-sync';
-import bemlinter from 'gulp-html-bemlinter';
-import { htmlValidator } from 'gulp-w3c-html-validator';
+import gulp from "gulp";
+import plumber from "gulp-plumber";
+import gulpIf from "gulp-if";
+import dartSass from "sass";
+import gulpSass from "gulp-sass";
+import postcss from "gulp-postcss";
+import postUrl from "postcss-url";
+import autoprefixer from "autoprefixer";
+import csso from "postcss-csso";
+import terser from "gulp-terser";
+import squoosh from "gulp-libsquoosh";
+import svgo from "gulp-svgmin";
+import { stacksvg } from "gulp-stacksvg";
+import { deleteAsync } from "del";
+import browser from "browser-sync";
+import bemlinter from "gulp-html-bemlinter";
+import { htmlValidator } from "gulp-w3c-html-validator";
 
 const sass = gulpSass(dartSass);
 let isDevelopment = true;
 
-gulp.task("deploy", function () {
-  return gulp.src("./dist/**/*").pipe(ghPages());
-});
-
 export function processMarkup() {
-  return gulp.src('source/*.html').pipe(gulp.dest('build'));
+  return gulp.src("source/*.html").pipe(gulp.dest("build"));
 }
 
 export function lintBem() {
-  return gulp.src('source/*.html').pipe(bemlinter());
+  return gulp.src("source/*.html").pipe(bemlinter());
 }
 
 export function validateMarkup() {
   return gulp
-    .src('source/*.html')
+    .src("source/*.html")
     .pipe(htmlValidator.analyzer())
     .pipe(htmlValidator.reporter({ throwErrors: true }));
 }
 
 export function processStyles() {
   return gulp
-    .src('source/sass/*.scss', { sourcemaps: isDevelopment })
+    .src("source/sass/*.scss", { sourcemaps: isDevelopment })
     .pipe(plumber())
-    .pipe(sass().on('error', sass.logError))
-    .pipe(postcss([postUrl({ assetsPath: '../' }), autoprefixer(), csso()]))
-    .pipe(gulp.dest('build/css', { sourcemaps: isDevelopment }))
+    .pipe(sass().on("error", sass.logError))
+    .pipe(postcss([postUrl({ assetsPath: "../" }), autoprefixer(), csso()]))
+    .pipe(gulp.dest("build/css", { sourcemaps: isDevelopment }))
     .pipe(browser.stream());
 }
 
 export function processScripts() {
   return gulp
-    .src('source/js/**/*.js')
+    .src("source/js/**/*.js")
     .pipe(terser())
-    .pipe(gulp.dest('build/js', { sourcemaps: isDevelopment }))
+    .pipe(gulp.dest("build/js", { sourcemaps: isDevelopment }))
     .pipe(browser.stream());
 }
 
 export function optimizeImages() {
   return gulp
-    .src('source/img/**/*.{png,jpg}')
+    .src("source/img/**/*.{png,jpg}")
     .pipe(gulpIf(!isDevelopment, squoosh()))
-    .pipe(gulp.dest('build/img'));
+    .pipe(gulp.dest("build/img"));
 }
 
 export function createWebp() {
   return gulp
-    .src('source/img/**/*.{png,jpg}')
+    .src("source/img/**/*.{png,jpg}")
     .pipe(
       squoosh({
         webp: {},
       })
     )
-    .pipe(gulp.dest('build/img'));
+    .pipe(gulp.dest("build/img"));
 }
 
 export function optimizeVector() {
   return gulp
-    .src(['source/img/**/*.svg', '!source/img/icons/**/*.svg'])
+    .src(["source/img/**/*.svg", "!source/img/icons/**/*.svg"])
     .pipe(svgo())
-    .pipe(gulp.dest('build/img'));
+    .pipe(gulp.dest("build/img"));
 }
 
 export function createStack() {
   return gulp
-    .src('source/img/icons/**/*.svg')
+    .src("source/img/icons/**/*.svg")
     .pipe(svgo())
     .pipe(stacksvg())
-    .pipe(gulp.dest('build/img/icons'));
+    .pipe(gulp.dest("build/img/icons"));
 }
 
 export function copyAssets() {
   return gulp
     .src(
       [
-        'source/fonts/**/*.{woff2,woff}',
-        'source/*.ico',
-        'source/*.webmanifest',
-        'source/vendor/**',
+        "source/fonts/**/*.{woff2,woff}",
+        "source/*.ico",
+        "source/*.webmanifest",
+        "source/vendor/**",
       ],
       {
-        base: 'source',
+        base: "source",
       }
     )
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest("build"));
 }
 
 export function startServer(done) {
   browser.init({
     server: {
-      baseDir: 'build',
+      baseDir: "build",
     },
     cors: true,
     notify: false,
@@ -123,9 +119,9 @@ function reloadServer(done) {
 }
 
 function watchFiles() {
-  gulp.watch('source/sass/**/*.scss', gulp.series(processStyles));
-  gulp.watch('source/js/*.js', gulp.series(processScripts));
-  gulp.watch('source/*.html', gulp.series(processMarkup, reloadServer));
+  gulp.watch("source/sass/**/*.scss", gulp.series(processStyles));
+  gulp.watch("source/js/*.js", gulp.series(processScripts));
+  gulp.watch("source/*.html", gulp.series(processMarkup, reloadServer));
 }
 
 function compileProject(done) {
@@ -142,7 +138,7 @@ function compileProject(done) {
 }
 
 function deleteBuild() {
-  return deleteAsync('build');
+  return deleteAsync("build");
 }
 
 export function buildProd(done) {

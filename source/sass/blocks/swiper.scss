@@ -25,16 +25,20 @@
 
   @media (min-width: $tablet-width) {
     width: 80px;
-    height: 71.5%;
+    height: 76.2%;
   }
 
-  @media (min-width: $tablet-width) {
+  @media (min-width: $desktop-width) {
     width: 80px;
     height: 100%;
   }
 
   &:hover {
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, #fff 100%);
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0,
+      $color-default-white 100%
+    );
   }
 
   &:active {
@@ -50,8 +54,13 @@
   left: 0;
 
   &:hover {
-    background: linear-gradient(90deg, #fff 0, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(
+      90deg,
+      $color-default-white 0,
+      rgba(255, 255, 255, 0) 100%
+    );
   }
+
   &:active {
     background: linear-gradient(
       90deg,
@@ -73,6 +82,7 @@
 
 .swiper .swiper-pagination {
   display: none;
+
   @media (min-width: $desktop-width) {
     display: flex;
     flex-wrap: wrap;

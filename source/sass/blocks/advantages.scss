@@ -23,13 +23,12 @@
 }
 
 .advantages__title {
-  margin: 0;
   font-size: 24px;
   font-style: normal;
   line-height: 36px;
   text-align: center;
   color: $night-rider;
-  margin-bottom: 36px;
+  margin: 0 0 36px 0;
   letter-spacing: 0.02em;
 
   @media (min-width: $tablet-width) {
@@ -69,7 +68,7 @@
 
   &::before {
     position: absolute;
-    content: '';
+    content: "";
     width: 52px;
     height: 56px;
     background-position: 0 0;
@@ -106,36 +105,35 @@
 
 .advantages__item--speed_icon {
   &::before {
-    background-image: url('../../img/speed-icon.svg');
+    background-image: url("../../img/speed-icon.svg");
   }
 }
 
 .advantages__item--comfort_icon {
   &::before {
-    background-image: url('../../img/comfort-icon.svg');
+    background-image: url("../../img/comfort-icon.svg");
   }
 }
 
 .advantages__item--energy_icon {
   &::before {
-    background-image: url('../../img/energy-icon.svg');
+    background-image: url("../../img/energy-icon.svg");
   }
 }
 
 .advantages__item--eco_icon {
   &::before {
-    background-image: url('../../img/eco-icon.svg');
+    background-image: url("../../img/eco-icon.svg");
   }
 }
 
 .advantages__item-title {
-  margin: 0;
   font-size: 18px;
   line-height: 32px;
   text-align: center;
   color: $night-rider;
   letter-spacing: 0.02em;
-  margin-bottom: 4px;
+  margin: 0 0 4px 0;
 
   @media (min-width: $tablet-width) {
     font-size: 24px;

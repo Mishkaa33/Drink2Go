@@ -2,11 +2,11 @@ const mapContainer = document.querySelector(".map");
 const interactiveMap = L.map("map__canvas");
 
 const LOCATION = {
-  lat: 59.968137,
-  lng: 30.316272,
+  lat: 59.968418,
+  lng: 30.317611,
 };
 
-const MAP_ZOOM = 20;
+const MAP_ZOOM = 18;
 
 const deleteClass = () => {
   mapContainer.classList.remove("no-js");
